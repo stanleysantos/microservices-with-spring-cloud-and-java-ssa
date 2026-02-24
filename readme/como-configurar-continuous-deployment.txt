@@ -1,0 +1,12 @@
+Como configurar continuous deployment com docker e github
+
+1_ Criar access token no dockerhub
+2_ Criar as variáveis de ambiente no github com o token e nome de usuario (Settings)
+    Precisar ser em um repositorio
+    Secret Variables / Actions
+    New Repository Secret
+    Repetir para DOCKER_ACCESS_TOKEN E DOCKER_USERNAME
+3_ Criar a ação (Actions) no github
+    Actions / Docker Image
+4_ Configurar o arquivo continuous-deployment.yml criado no item 3_
+    Usar marketplace na edição pelo github com os exemplos de login ao dockerhub, etc
