@@ -14,5 +14,9 @@ jobs:
 
     steps:
     - uses: actions/checkout@v4
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+    
+    - name: Login to docker hub
+      uses: actions/login-action@v3
+      with:
+        username: ${{secret.DOCKER_ACCESS_TOKEN}}
+        password: ${{secret.DOCKER_USERNAME}}
