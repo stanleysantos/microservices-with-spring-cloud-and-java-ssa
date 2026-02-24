@@ -1,0 +1,19 @@
+spring-cloud-config-server
+naming-server (eureka-server) :8761
+api-gateway (eureka-client) :8765
+
+exchange-service :8001 :8002 etc
+http://localhost:8001/exchange-service/5/USD/BRL
+
+book-service :8100 :8101 ...
+http://localhost:8100/book-service/5/BRL
+
+swagger-api :
+localhost:<PORT>/v3/api-docs
+localhost:8100/v3/api-docs
+
+swagger-ui bookservice:
+localhost:8100/swagger-ui/index.html
+
+swagger-ui geral
+http://localhost:8765/swagger-ui/index.html

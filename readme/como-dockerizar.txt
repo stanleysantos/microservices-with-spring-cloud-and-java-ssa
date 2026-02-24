@@ -1,0 +1,110 @@
+Dockerizar aplicação web
+
+pesquisar por docker spring boot
+verificar exemplo de dockerfile
+
+fazer o build da imagem
+#copiar nome do jar e mudar -0.0.1 para :0.0.1
+docker build -t spring-cloud-config-server:0.0.1-SNAPSHOT .
+
+#executar aplicacao 8888 é a porta do spring-cloud-config-server em application.yml
+docker run -p 8888:8888 -d spring-cloud-config-server:0.0.1-SNAPSHOT
+
+#VER EXECUCAO
+docker container ls
+
+#visão geral
+https://trt12br.udemy.com/course/microservices-do-0-a-gcp-com-spring-boot-kubernetes-e-docker/learn/lecture/51023831#overview
+
+fAZER PUSH no docker hub
+
+docker tag spring-cloud-config-server:0.0.1-SNAPSHOT stanleysantos82/spring-cloud-config-server:0.0.1-SNAPSHOT
+docker login docker.io
+docker push stanleysantos82/spring-cloud-config-server:0.0.1-SNAPSHOT
+
+executar do docker hub
+
+docker run stanleysantos82/spring-cloud-config-server:0.0.1-SNAPSHOT
+
+#criando tag latest
+
+docker tag stanleysantos82/spring-cloud-config-server:0.0.1-SNAPSHOT stanleysantos82/spring-cloud-config-server:latest
+
+docker push stanleysantos82/spring-cloud-config-server:latest
+docker run stanleysantos82/spring-cloud-config-server:latest
+
+#procurando images
+docker search mysql --filter is-official
+
+#comandos uteis
+
+docker system df 
+docker events 
+docker stats
+docker container ls -a
+docker container logs <id>
+docker container logs -f <id>
+docker container stop <id>
+docker top <id>
+docker run -p p1:p2 -d -m 1G --cpu-quota 100000 <image> 
+
+#configurar
+
+#mysql para buildar microsservices
+docker run -d --name local-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=my-secret-pw mysql:latest
+
+
+#Tracer dos servicos (depois precisa configurar os microsserviços):
+ docker run -p -d 9411:9411 openzipkin/zipkin:3.5.1
+
+#containerizando a stack de microsservicos com docker
+criar docker-composer.yml vazio
+
+veja o pom-containerizando-stack-microsservicos-comdocker.xml , plugin pring-boot-maven-plugin com as configurações do repositorio onde a imagem do naming-server vai ser hospedada
+
+comando para container docker do naming server para gerar a imagem e enviar para o docker-hub (é um método antigo usar o maven existente em muitos legados)
+
+mvn spring-boot:build-image -DskipTests
+
+para executar a imagem:
+
+    docker run -p 8761:8761 leandrocgsi/naming-server -d
+    docker run -p 8761:8761 stanleysantos82/naming-server -d
+
+opção com o docker-compose.yml no naming-server
+
+    criar o docker-compose.yml
+    na pasta do naming-server
+    docker compose up
+
+#usando docker compose
+
+	declaracao dos servicos centralizada no docker-compose.yml (api-gateway, zipkin-server, naming-server). Os serviços foram criados com mvn spring-boot:build-image -DskipTests e subiram para o docker desktop da minha conta
+
+	docker-compose.yml também precisa que cada serviço esteja bem configurado em seus application.yml (exposição de portas, parâmetros, etc)
+
+    eureka:
+      client:
+        service-url:
+          defaultZone: http://localhost:8761/eureka
+
+    se transforma em
+    EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: http://localhost:8761/eureka
+
+
+	docker compose up -d #sobe os serviços, necessita docker desktop 
+    docker logs p/ inspecionar erros
+    
+    precisa do Dockerfile para saber como builder e executar os apps microsservices
+    precisar gerar o .jar do book-service e exchange-service para o docker-composer.yml
+
+	Para gerar o .jar para book_service e exchange_service executar:
+	Precisar estar com um servidor mysql em execução com as respectivas base de dados.
+		docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=admin123 -d mysql:9.3.0 
+
+
+
+	mvn clean package -DSkipTest
+		
+
+    outras formas de monitorar a stack: prometeus, grafana, opentelemetry, elasticsearch, etc

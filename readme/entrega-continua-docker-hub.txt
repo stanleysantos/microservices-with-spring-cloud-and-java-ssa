@@ -1,0 +1,8 @@
+--entrega continua com docker-hub
+
+1) logar no docker-hub
+    pelo docker desktop ou linha de comando
+2) docker push stanleysantos82/exchange-service:latest
+    vai aparecer no docker hub em repositorios
+3) Implementar de forma automatizada usando git
+
