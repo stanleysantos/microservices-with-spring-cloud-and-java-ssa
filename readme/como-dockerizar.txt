@@ -101,7 +101,7 @@ opção com o docker-compose.yml no naming-server
 	Para gerar o .jar para book_service e exchange_service executar:
 	Precisar estar com um servidor mysql em execução com as respectivas base de dados.
 		docker run --name some-mysql -p 3306:3306 -e MYSQL_ROOT_PASSWORD=admin123 -d mysql:9.3.0 
-
+        ou executar a imagem direto do dockerhub se ela existir já configurada
 
 
 	mvn clean package -DSkipTest
