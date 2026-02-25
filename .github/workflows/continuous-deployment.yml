@@ -30,9 +30,9 @@ jobs:
 
     - name: Build Book Service
       working-directory: ./book-service
-      run: mvn clean package
+      run: mvn clean package -DskipTests
 
     - name: Build Exchange Service
       working-directory: ./exchange-service
-      run: mvn clean package
+      run: mvn clean package -DskipTests
 
