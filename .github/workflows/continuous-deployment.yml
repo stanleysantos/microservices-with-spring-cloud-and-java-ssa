@@ -48,4 +48,4 @@ jobs:
     - name: Push Docker Images to Docker Hub
       run: |
         docker push ${{secrets.DOCKER_USERNAME}}/naming-server:latest |
-        docker push ${{secrets.DOCKER_USERNAME}}/naming-server:${{github.RUN_ID}
+        docker push ${{secrets.DOCKER_USERNAME}}/naming-server:${{github.RUN_ID}}
