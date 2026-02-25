@@ -41,16 +41,10 @@ paketobuildpacks/builder-noble-java-tiny   latest           cab14ec30d81   46 ye
         docker tag stanleysantos82/api-gateway:0.0.1-SNAPSHOT stanleysantos82/api-gateway:latest
         docker tag stanleysantos82/naming-server:0.0.1-SNAPSHOT stanleysantos82/naming-server:latest
 
-
-
-        Padroniza a imagem com a versão latest
-        docker tag stanleysantos82
-
 5_ Fazer o testes local usando gihub actions
     Reset docker local
-    5.1 Modificar o docker-compose.yml
+    5.1 Modificar o docker-compose.yml em local-test
+    Acessar a parte local-test e executar docker compose up -d
 
-        usar a versão latest, pois a versão 0.0.1-snapshot não estará disponível no docker hub
-        build das imagens , remover as tags de build
 
 

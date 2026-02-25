@@ -1,4 +1,4 @@
-#docker run -p 8761:8761 stanleysantos82/naming-server:0.0.1-SNAPSHOT
+#usa as imagens geradas pelo github actions no docker hub remoto
 services:
   zipkin-server:
     image: openzipkin/zipkin:3.5.1
@@ -9,7 +9,7 @@ services:
       - erudio-network
       
   naming-server:
-    image: stanleysantos82/naming-server:0.0.1-SNAPSHOT
+    image: stanleysantos82/naming-server:latest
     ports:
       - 8761:8761
     restart: always
@@ -18,7 +18,7 @@ services:
     networks:
       - erudio-network
   api-gateway:
-    image: stanleysantos82/api-gateway:0.0.1-SNAPSHOT
+    image: stanleysantos82/api-gateway:latest
     ports:
       - 8765:8765
     restart: always
@@ -62,9 +62,6 @@ services:
   exchange-service:
     image: stanleysantos82/exchange-service
     restart: always
-    build:
-      context: ./exchange-service
-      dockerfile: Dockerfile
     environment:
       TZ: America/Sao_Paulo
       SPRING_ZIPKIN_BASEURL: http://zipkin-server:9411
@@ -84,9 +81,6 @@ services:
   book-service:
     image: stanleysantos82/book-service
     restart: always
-    build:
-      context: ./book-service
-      dockerfile: Dockerfile
     environment:
       TZ: America/Sao_Paulo
       SPRING_ZIPKIN_BASEURL: http://zipkin-server:9411
