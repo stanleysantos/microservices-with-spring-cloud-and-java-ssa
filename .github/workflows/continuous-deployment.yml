@@ -48,8 +48,7 @@ jobs:
         docker tag ${{secrets.DOCKER_USERNAME}}/api-gateway:0.0.1-SNAPSHOT ${{secrets.DOCKER_USERNAME}}/naming-server:${{github.RUN_ID}} |
         docker tag ${{secrets.DOCKER_USERNAME}}/booking-service:0.0.1-SNAPSHOT ${{secrets.DOCKER_USERNAME}}/naming-server:latest |
         docker tag ${{secrets.DOCKER_USERNAME}}/exchange-service:0.0.1-SNAPSHOT ${{secrets.DOCKER_USERNAME}}/naming-server:${{github.RUN_ID}}
-
-  - name: Push Docker Images to Docker Hub
+    - name: Push Docker Images to Docker Hub
       run: |
         docker push ${{secrets.DOCKER_USERNAME}}/naming-server:latest |
         docker push ${{secrets.DOCKER_USERNAME}}/naming-server:${{github.RUN_ID}} |
