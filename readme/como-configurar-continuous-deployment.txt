@@ -18,4 +18,8 @@ Como configurar continuous deployment com docker e github
 
     4.2 Configurar o build dos Jar
     4.3 Configurar a execução do docker compose
+    4.4 COnfigurar Docker Compose Build
+    4.5 Configurar as tags latest para o docker hub
+        Padroniza a imagem com a versão latest
+        docker tag stanleysantos82
 
