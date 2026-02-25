@@ -10,3 +10,12 @@ Como configurar continuous deployment com docker e github
     Actions / Docker Image
 4_ Configurar o arquivo continuous-deployment.yml criado no item 3_
     Usar marketplace na edição pelo github com os exemplos de login ao dockerhub, etc
+
+    4.1 Configurar o Java para build
+    editar o arquivo continuous-deployment,
+    na area de marketplace procurar por Java (Setup Java SDK)
+    usar como exemplo
+
+    4.2 Configurar o build dos Jar
+    4.3 Configurar a execução do docker compose
+
