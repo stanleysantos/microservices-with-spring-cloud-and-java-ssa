@@ -46,7 +46,7 @@ jobs:
         docker tag ${{secrets.DOCKER_USERNAME}}/naming-server:0.0.1-SNAPSHOT ${{secrets.DOCKER_USERNAME}}/naming-server:${{github.RUN_ID}}        
         docker tag ${{secrets.DOCKER_USERNAME}}/api-gateway:0.0.1-SNAPSHOT ${{secrets.DOCKER_USERNAME}}/naming-server:latest 
         docker tag ${{secrets.DOCKER_USERNAME}}/api-gateway:0.0.1-SNAPSHOT ${{secrets.DOCKER_USERNAME}}/naming-server:${{github.RUN_ID}} 
-        docker tag ${{secrets.DOCKER_USERNAME}}/booking-service:0.0.1-SNAPSHOT ${{secrets.DOCKER_USERNAME}}/naming-server:latest 
+        docker tag ${{secrets.DOCKER_USERNAME}}/book-service:0.0.1-SNAPSHOT ${{secrets.DOCKER_USERNAME}}/naming-server:latest 
         docker tag ${{secrets.DOCKER_USERNAME}}/exchange-service:0.0.1-SNAPSHOT ${{secrets.DOCKER_USERNAME}}/naming-server:${{github.RUN_ID}}
 
     - name: Push Docker Images to Docker Hub
